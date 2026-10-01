@@ -1,0 +1,24 @@
+# Virtual environment
+myenv/
+venv/
+
+# Environment variables
+.env
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Vector store data
+vectorstore/
+
+# OS/editor files
+.vscode/
+.DS_Store
+
+# Data files (synthetic docs may still be excluded if large)
+data/documents/
+data/processed/
+
+# Testing
+.pytest_cache/

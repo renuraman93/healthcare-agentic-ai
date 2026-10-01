@@ -1,0 +1,48 @@
+services:
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+
+    ports:
+      - "8000:8000"
+
+    environment:
+      GEMINI_API_KEY: ${GEMINI_API_KEY}
+      LLM_PROVIDER: gemini
+      LLM_MODEL_NAME: ${LLM_MODEL_NAME:-gemini-2.5-flash}
+      EMBEDDING_MODEL_NAME: ${EMBEDDING_MODEL_NAME:-gemini-embedding-001}
+      VECTOR_STORE_DIR: /app/vectorstore
+      APP_ENV: production
+
+    volumes:
+      - ./vectorstore:/app/vectorstore
+      - ./data/documents:/app/data/documents
+
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import httpx; httpx.get('http://localhost:8000/health').raise_for_status()"
+        ]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+
+    ports:
+      - "8501:8501"
+
+    environment:
+      API_BASE_URL: http://api:8000
+
+    depends_on:
+      - api

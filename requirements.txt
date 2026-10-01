@@ -1,0 +1,28 @@
+# Core
+fastapi
+uvicorn[standard]
+pydantic
+pydantic-settings
+python-dotenv
+
+# LLM
+langchain-google-genai
+google-generativeai
+
+# Document processing
+pypdf
+python-docx
+
+# RAG / Vector store
+chromadb
+langgraph
+google-genai
+
+python-multipart
+pytest
+pytest-asyncio
+# Will be added in later phases:
+# langchain
+# langgraph
+streamlit
+httpx
