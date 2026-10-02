@@ -39,7 +39,7 @@ multi-agent RAG system can:
                  |
   +-------+------+------+-------+
   |       |             |       |
-  Document Clinical Summarization General
+Document Clinical Summarization General
 Search Extraction Healthcare
 | | | |
 +---RAG/ChromaDB------+ |
